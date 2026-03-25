@@ -1,5 +1,7 @@
 import { Title, Text, Group, Box } from "@mantine/core";
+
 import { UserBtn } from "../../components/UserBtn/user-btn";
+
 export function MainPage() {
   return (
     <Box className="min-h-screen flex flex-col relative selection:bg-purple-500/30 bg-[#020203] overflow-x-hidden">

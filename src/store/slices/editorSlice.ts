@@ -1,8 +1,8 @@
-import  type { BlockType, IBlock } from './../types/editor';
+import  type { BlockType, IBlock } from '../../types/editor';
 import { createSlice } from '@reduxjs/toolkit'
 import { nanoid } from 'nanoid'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type {  IEditorState } from '../types/editor'
+import type {  IEditorState } from '../../types/editor'
 
 
 const initialState: IEditorState = {
