@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-deep-black: #020203;
+  --color-neon-purple: #8b5cf6;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(250px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(250px) rotate(-360deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+body {
+  margin: 0;
+  background-color: #020203;
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+
+.custom-container {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.neon-glow {
+  filter: blur(120px);
+  pointer-events: none;
+  position: absolute;
+  border-radius: 50%;
+}
