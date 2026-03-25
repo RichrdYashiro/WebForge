@@ -1,5 +1,5 @@
+@import "@mantine/core/styles.css";
 @import "tailwindcss";
-
 @theme {
   --color-deep-black: #020203;
   --color-neon-purple: #8b5cf6;
