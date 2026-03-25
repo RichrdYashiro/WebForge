@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./public/logo.png" width="120" alt="WebForge Logo" />
+
   <h1>🛠️ WebForge</h1>
   <p><b>The High-Performance No-Code Engine for Modern Web</b></p>
 
@@ -56,20 +56,24 @@ src/
 Clone the repository:
 
 Bash
+```
 git clone [https://github.com/your-username/webforge.git](https://github.com/your-username/webforge.git)
+```
 Install dependencies:
-
 Bash
+```
 npm install
+```
 Launch development server:
-
 Bash
+```
 npm run dev
+```
 📈 Roadmap
-
+```
 [ ] Integration with Google OAuth 2.0.
 [ ] Exporting full projects as downloadable .zip archives.
 [ ] Custom font integration via Google Fonts API.
 [ ] Collaborative editing mode (WebSockets support).
-
+```
 Note for Recruiters: This project is a showcase of handling complex frontend business logic, implementing custom engines, and managing the data lifecycle from user input to final code compilation.
