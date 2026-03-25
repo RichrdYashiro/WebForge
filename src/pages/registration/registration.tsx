@@ -14,7 +14,7 @@ export const Registration = () => {
 
         <div className="flex flex-col gap-4">
           <UserBtn link="/login">I have an account</UserBtn>
-          <UserBtn link="/">Back</UserBtn>
+          <UserBtn link="/">Back !</UserBtn>
         </div>
       </div>
     </Box>

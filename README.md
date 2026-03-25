@@ -1,79 +1,73 @@
-<div align="center">
+# React + TypeScript + Vite
 
-  <h1>🛠️ WebForge</h1>
-  <p><b>The High-Performance No-Code Engine for Modern Web</b></p>
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-  <img src="https://img.shields.io/badge/React-18-blue?style=flat-square&logo=react" />
-  <img src="https://img.shields.io/badge/TypeScript-Ready-blue?style=flat-square&logo=typescript" />
-  <img src="https://img.shields.io/badge/Redux-Toolkit-764ABC?style=flat-square&logo=redux" />
-</div>
+Currently, two official plugins are available:
 
----
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-**WebForge** is an advanced React-based website builder designed to generate clean, semantic, and production-ready code without writing a single line of HTML or CSS. This project serves as a demonstration of expert-level component architecture, complex state management, and custom engine development.
+## React Compiler
 
----
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 🚀 Core Features
+## Expanding the ESLint configuration
 
-- **Drag-and-Drop Canvas:** Intuitive UI assembly using a modern, performant D&D engine.
-- **Smart Code Generation:** Instant compilation of visual layouts into valid, BEM-friendly HTML5 and CSS3.
-- **Secure Authentication:** User registration system featuring 2FA/OTP verification via email.
-- **Live Style Inspector:** Real-time editing of block properties (typography, spacing, colors) with instant preview.
-- **Micro-animations:** Fluid UI transitions and feedback powered by Framer Motion.
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
----
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## 🛠 Tech Stack
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-- **Frontend:** React 18 + TypeScript.
-- **State Management:** Redux Toolkit (Logic-heavy state handling).
-- **Architecture:** **Component-Based Architecture** (Modular & Reusable).
-- **Styling:** SCSS / CSS Modules with **BEM methodology**.
-- **D&D Engine:** `@dnd-kit/core` for robust drag-and-drop logic.
-- **Animations:** Framer Motion for high-end UX.
-
----
-
-## 🏗 Project Structure
-
-WebForge follows a clean, modular component-based directory structure:
-
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-src/
- ├── assets/         # Images, fonts, and global SCSS
- ├── components/     # UI-Kit (Button, Input) & shared business components
- ├── layout/         # Page wrappers (Header, Sidebar, MainLayout)
- ├── pages/          # Application views (Editor, Auth, Dashboard)
- ├── store/          # Redux Toolkit (Slices, Hooks, Store config)
- ├── services/       # API logic, Email service, and Code Generator engine
- ├── hooks/          # Custom React hooks (useAuth, useEditor)
- ├── types/          # Global TypeScript interfaces and unions
- └── utils/          # Helper functions and validators
-```
- 
-📦 Getting Started
-Clone the repository:
 
-Bash
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-git clone [https://github.com/your-username/webforge.git](https://github.com/your-username/webforge.git)
-```
-Install dependencies:
-Bash
-```
-npm install
-```
-Launch development server:
-Bash
-```
-npm run dev
-```
-📈 Roadmap
-```
-[ ] Integration with Google OAuth 2.0.
-[ ] Exporting full projects as downloadable .zip archives.
-[ ] Custom font integration via Google Fonts API.
-[ ] Collaborative editing mode (WebSockets support).
-```
-Note for Recruiters: This project is a showcase of handling complex frontend business logic, implementing custom engines, and managing the data lifecycle from user input to final code compilation.
