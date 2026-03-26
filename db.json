@@ -1,0 +1,27 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "RichardYashiro",
+      "email": "r@l.com",
+      "password": "123123"
+    },
+    {
+      "email": "AisakaTaigak@mail.ru",
+      "password": "$2a$10$eCTFk4.31/TuKy2WUwq6HOE89YfdcAm.hXkjLTWKO70RWar4ZTcJW",
+      "name": "Андрей",
+      "surname": "Сысоев",
+      "confirmPassword": "123123",
+      "id": 2
+    },
+    {
+      "email": "AisakaTaiga2k@mail.ru",
+      "password": "$2a$10$wWeVz3EjmXZx0WCprT43yOf0CTAbCGO682ovtItHri3AIFSqM0v4.",
+      "name": "Андрей",
+      "surname": "Сысоев",
+      "confirmPassword": "123123",
+      "id": 3
+    }
+  ],
+  "sites": []
+}

@@ -2,21 +2,25 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { setAuth } from '../store/slices/authSlice';
 
 export const authApi = createApi({
- reducerPath: 'auth',
- baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000'}),
+ reducerPath: 'authApi',
+ baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3001'}),
  endpoints: (builder) => ({
     login: builder.mutation({
-     query: (body) => ({
+     query: (credentials) => ({
       url: '/login',
       method: 'POST',
-      body,
+      body: {
+      email: credentials.login,
+      password: credentials.password
+    },
      }),
         async onQueryStarted(args, {dispatch, queryFulfilled}) {
         try{
             const {data} = await queryFulfilled;
+            localStorage.setItem('token', data.accessToken)
             dispatch(setAuth({
                accessToken: data.accessToken, 
-                refreshToken: data.refreshToken
+                user: data.user
             }))
         }
         catch (error) {
@@ -37,7 +41,7 @@ export const authApi = createApi({
             const {data} = await queryFulfilled;
             dispatch(setAuth({
                accessToken: data.accessToken, 
-                refreshToken: data.refreshToken
+                user: data.user
             }))
         }
         catch (error) {
