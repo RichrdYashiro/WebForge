@@ -25,13 +25,13 @@ export const authSlice = createSlice({
       localStorage.setItem ('refresh', action.payload.refreshToken);
 
     },
-  setLogout: (state) => {
-   state.accessToken = undefined;
-   state.refreshToken = undefined;
-   state.isAuth = false;
-   localStorage.removeItem('access');
-   localStorage.removeItem('refresh');
-  }
+    setLogout: (state) => {
+    state.accessToken = undefined;
+    state.refreshToken = undefined;
+    state.isAuth = false;
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    }
     },
    
 })

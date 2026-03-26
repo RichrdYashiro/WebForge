@@ -31,10 +31,23 @@ export const authApi = createApi({
       method: 'POST',
       body,
     }),
+    
+    async onQueryStarted(args, {dispatch, queryFulfilled}) {
+        try{
+            const {data} = await queryFulfilled;
+            dispatch(setAuth({
+               accessToken: data.accessToken, 
+                refreshToken: data.refreshToken
+            }))
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
  
  })
- 
 })
 });
+
 
 export const {useLoginMutation, useRegisterMutation} = authApi
