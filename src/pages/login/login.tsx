@@ -1,18 +1,30 @@
-import { Title, Box, Input } from "@mantine/core";
+import { Title, Box } from "@mantine/core";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { UserBtn } from "../../components/UserBtn/user-btn";
-import { useState } from "react";
 import { useLoginMutation } from "../../services/authapi";
 import { notifications } from "@mantine/notifications";
 import { ButtonForm } from "../../components/";
-export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [login, { isLoading, isError }] = useLoginMutation();
+import { authSchema } from "../../schemas/auth";
+import { CustomInput } from "../../components/CustomInput/CustomInput";
+import type { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
-  const onLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+export const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: zodResolver(authSchema),
+    mode: "onBlur",
+    reValidateMode: "onChange",
+  });
+
+  const [loginUser, { isLoading }] = useLoginMutation();
+
+  const onLogin = async (data: any) => {
     try {
-      await login({ email, password }).unwrap();
+      await loginUser(data).unwrap();
       notifications.show({
         title: "Success!",
         message: "Welcome back, Lead Architect",
@@ -20,12 +32,15 @@ export const Login = () => {
         autoClose: 3000,
       });
     } catch (err) {
-      console.error("Login failed:", err);
+      const fetchError = err as FetchBaseQueryError;
       notifications.show({
-        title: "Auth Error",
-        message: "Invalid email or password. Please try again.",
+        title: "Error!",
+
+        message:
+          fetchError.status === "FETCH_ERROR"
+            ? "Server is offline"
+            : "Invalid email or password",
         color: "red",
-        icon: "❌",
       });
     }
   };
@@ -34,31 +49,30 @@ export const Login = () => {
     <Box className="flex-grow flex flex-col items-center justify-center text-center">
       <div className="cosmic-card p-12 rounded-[3rem] border border-white/5 bg-white/5 backdrop-blur-3xl shadow-2xl">
         <Title className="text-white text-4xl font-black mb-2 uppercase tracking-tighter">
-          Login
+          Authorize your identity
         </Title>
-        <form onSubmit={onLogin} className="flex flex-col gap-4">
-          <Input
-            placeholder="Email"
+        <form onSubmit={handleSubmit(onLogin)} className="flex flex-col gap-4">
+          <CustomInput
+            placeholder="email"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("login")}
+            error={errors.login?.message}
             required
           />
-          <Input
+          <CustomInput
             placeholder="Password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password")}
+            error={errors.password?.message}
             required
           />
-          <ButtonForm type="submit" loading={isLoading}>
+          <ButtonForm
+            type="submit"
+            loading={isLoading}
+            disabled={!isValid || isLoading}
+          >
             Login
           </ButtonForm>
-          {isError && (
-            <div className="text-red-500">
-              Login failed. Check your credentials.
-            </div>
-          )}
         </form>
         <div className="flex flex-col gap-4 mt-4">
           <UserBtn link="/registration">I not have account</UserBtn>
