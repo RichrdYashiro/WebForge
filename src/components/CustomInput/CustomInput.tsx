@@ -10,8 +10,9 @@ export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
         {...props}
         error={
           error ? (
-            <Box className="flex w-full mt-1.5">
-              <Box
+            <Text component="span" className="flex w-full mt-1.5">
+              <Text
+                component="span"
                 className="bg-white px-2 py-1 rounded-sm shadow-md"
                 style={{ display: "inline-flex", alignItems: "center" }}
               >
@@ -27,8 +28,8 @@ export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
                 >
                   {error}
                 </Text>
-              </Box>
-            </Box>
+              </Text>
+            </Text>
           ) : null
         }
         styles={{
