@@ -1,4 +1,5 @@
 import { Title, Box } from "@mantine/core";
+import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserBtn } from "../../components/UserBtn/user-btn";
@@ -19,6 +20,7 @@ export const Login = () => {
     mode: "onBlur",
     reValidateMode: "onChange",
   });
+  const navigate = useNavigate();
 
   const [loginUser, { isLoading }] = useLoginMutation();
 
@@ -31,6 +33,10 @@ export const Login = () => {
         color: "green",
         autoClose: 3000,
       });
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (err) {
       const fetchError = err as FetchBaseQueryError;
       notifications.show({
@@ -76,6 +82,7 @@ export const Login = () => {
         </form>
         <div className="flex flex-col gap-4 mt-4">
           <UserBtn link="/registration">I not have account</UserBtn>
+          <button onClick={() => navigate(-1)}>Go Back</button>
         </div>
       </div>
     </Box>

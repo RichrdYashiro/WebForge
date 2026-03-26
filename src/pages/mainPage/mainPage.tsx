@@ -1,8 +1,11 @@
 import { Title, Text, Group, Box } from "@mantine/core";
-
+import type { RootState } from "../../store/store";
 import { UserBtn } from "../../components/UserBtn/user-btn";
+import { useSelector } from "react-redux";
 
 export function MainPage() {
+  const user = useSelector((state: RootState) => state.auth.user);
+  const isAuth = useSelector((state: RootState) => state.auth.isAuth);
   return (
     <Box className="min-h-screen flex flex-col relative selection:bg-purple-500/30 bg-[#020203] overflow-x-hidden">
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
@@ -20,6 +23,7 @@ export function MainPage() {
           style={{ animation: "orbit 25s linear infinite" }}
         />
       </div>
+      {user?.name}
       <main className="flex-grow relative z-10 flex flex-col justify-center">
         <div className="custom-container py-32 md:py-48">
           <section className="flex flex-col items-center text-center">

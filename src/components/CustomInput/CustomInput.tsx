@@ -1,4 +1,4 @@
-import { TextInput, type TextInputProps, Box, Text } from "@mantine/core";
+import { TextInput, type TextInputProps, Text } from "@mantine/core";
 import { forwardRef } from "react";
 type CustomInputProps = TextInputProps;
 
