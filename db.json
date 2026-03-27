@@ -21,6 +21,21 @@
       "surname": "Сысоев",
       "confirmPassword": "123123",
       "id": 3
+    },
+    {
+      "email": "AisakaTaig2ak@mail.ru",
+      "password": "$2a$10$LhF.DjqouPInbB5Z6zlSU./HlPAAAtPwgOxSFoPcoMwjvrSI6ebv6",
+      "name": "Андрей",
+      "surname": "Сысоев",
+      "confirmPassword": "123123",
+      "id": 4
+    },
+    {
+      "email": "Ai2sak2aTaigak@mail.ru",
+      "password": "$2a$10$nNP8fmhHYPjEkq98kLrux.1tT8ouk1iD4YvQpXF2sMM8VnvwUv0PG",
+      "name": "Андрей",
+      "surname": "Сысоев",
+      "id": 5
     }
   ],
   "sites": []

@@ -23,7 +23,7 @@ export function MainPage() {
           style={{ animation: "orbit 25s linear infinite" }}
         />
       </div>
-      {user?.name}
+      {isAuth && <>{user?.name}</>}
       <main className="flex-grow relative z-10 flex flex-col justify-center">
         <div className="custom-container py-32 md:py-48">
           <section className="flex flex-col items-center text-center">

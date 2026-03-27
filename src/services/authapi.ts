@@ -30,10 +30,15 @@ export const authApi = createApi({
  
     }),
     register: builder.mutation ({
-        query: (body) => ({
+        query: (registerUser) => ({
       url: '/register',
       method: 'POST',
-      body,
+      body:{
+        email: registerUser.email,
+        password: registerUser.password,
+        name: registerUser.name,
+        surname: registerUser.surname,
+      }
     }),
     
     async onQueryStarted(args, {dispatch, queryFulfilled}) {

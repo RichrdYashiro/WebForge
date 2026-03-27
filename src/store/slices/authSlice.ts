@@ -10,14 +10,14 @@ interface initialState {
   refreshToken?: string;
   isAuth?: boolean;
   error?: string;
-  user: IUser | null;
+  user?: IUser | null;
 }
 
 const initialState: initialState = {
   accessToken: localStorage.getItem('access') || undefined,
   isAuth: !!localStorage.getItem('access'),
   refreshToken: localStorage.getItem('refresh') || undefined,
-  user: null,
+  user: JSON.parse(localStorage.getItem('user') || 'null') || null,
 };
 
 export const authSlice = createSlice({
